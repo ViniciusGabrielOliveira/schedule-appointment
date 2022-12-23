@@ -1,6 +1,21 @@
-# Getting Started with Create React App
+<h1 align="center">👨‍⚕️ Schedule Appointment 🗓️</h1>
+
+<h2>📅 About Project</h2>
+
+All actions in this project are working simulating calls to a REST API using Redux to manage the application state
+
+This is a sketch of a webApp simulating a doctor's office displaying the office's weekly schedule with daily billing and percentage of occupancy for appointments. In the calendar you can select the week you want to view.
+
+This project is under development and needs to implement the actions of registering a doctor, tasks and appointments.
+
+Although these screens still need to be developed, the functions with store, reducer and actions have already been developed.
+
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
+
+This project's services are mocked to simulate an http rest request.
 
 ## Available Scripts
 
