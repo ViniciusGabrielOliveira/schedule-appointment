@@ -1,39 +1,82 @@
-.App {
-  text-align: center;
+@media screen and (max-width: 740px)  {
+     .App-header
+     {
+        flex-direction: column;
+     }
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.App
+{
+    height: 90vh;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-float infinite 3s ease-in-out;
-  }
+.App-header
+{
+    background-color: var(--secondary);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 calc(8px + 1.5625vw);
+    gap: calc(8px + 1.5625vw);
 }
 
-.App-header {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.App-header h2
+{
+    color: var(--primary-dark);
 }
 
-.App-link {
-  color: rgb(112, 76, 182);
+.container-body
+{
+    display: flex;
+    flex-direction: row;
+    background-color: var(--third);
 }
 
-@keyframes App-logo-float {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(10px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
+.container-right
+{
+    height: 10vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: calc(8px + 1.5625vw);
+}
+
+.circle
+{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.10);
+    padding: 8px;
+}
+
+.profile
+{
+    width: 100%;
+}
+
+.label
+{
+    font-size: calc(9px + 1.5vmin);
+    color: var(--white);
+}
+
+.amount
+{
+    background-color: rgb(61, 112, 76);
+    color: var(--white);
+    font-size: calc(9px + 1.5vmin);
+    padding: 1vmin 2vmin;
+    border-radius: 10px;
+    margin-left: 2vmin;
+}
+
+.menu
+{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--primary);
+    gap: 20px;
 }

@@ -1,0 +1,61 @@
+@media screen and (max-width: 740px)  {
+    .body
+    {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.body
+{
+    display: flex;
+    gap: 20px;
+    padding: 3vmin;
+    width: 100%;
+    min-height: 90vh;
+}
+
+.column-left
+{
+    width: 100%;
+}
+
+.column-right
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.container-title
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.title
+{
+    width: 80%;
+    font-weight: 700;
+    font-size: calc(9px + 1.5vmin);
+}
+
+.value
+{
+    font-size: 78px;
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-top: 2px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.calendar
+{
+    background-color: #00000000;
+    padding: 30px;
+}
