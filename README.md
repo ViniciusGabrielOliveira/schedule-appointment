@@ -11,6 +11,8 @@ This project is under development and needs to implement the actions of register
 Although these screens still need to be developed, the functions with store, reducer and actions have already been developed.
 
 
+<img align="center" height="40%" src="https://github.com/ViniciusGabrielOliveira/schedule-appointment/blob/master/src/assets/schedule-appointment.png?raw=true">
+
 ## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
