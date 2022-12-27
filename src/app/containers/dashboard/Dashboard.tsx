@@ -53,23 +53,23 @@ export function Dashboard()
 
     const doctorsList = doctors.map((item, index) =>
     {
-        return <div key={index} className='container-task-card' onClick={() => deleteDoctor(item.id)}>
+        return <div key={index} className='container-task-card'>
             <TaskCard {...{
                 name: item.name,
                 message: item.specialty
             }}></TaskCard>
-            <img width={25} height={30} src={trash} alt="logo" />
+            <img width={25} height={30} src={trash} alt="logo" onClick={() => deleteDoctor(item.id)}/>
         </div>
     })
 
     const tasksList = tasks.map((item, index) =>
     {
-        return <div key={index} className='container-task-card' onClick={() => deleteTasks(item.id!)}>
+        return <div key={index} className='container-task-card'>
             <TaskCard {...{
                 name: item.name,
                 message: item.message
             }}></TaskCard>
-            <img width={25} height={30} src={trash} alt="logo" />
+            <img width={25} height={30} src={trash} alt="logo" onClick={() => deleteTasks(item.id!)} />
         </div>
     })
 
