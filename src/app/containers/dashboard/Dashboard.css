@@ -59,3 +59,12 @@
     background-color: #00000000;
     padding: 30px;
 }
+
+.container-task-card
+{
+    display: flex;
+    flex-direction: row;
+    gap: 5;
+    align-items: center;
+    cursor: pointer;
+}

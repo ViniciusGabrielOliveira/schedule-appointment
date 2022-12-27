@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { Task } from '../../app/models/task.model';
+import { router } from '../../routerBrowser';
 import { deleteTask, getTasks, postTask, putTask } from './taskService';
 
 export interface TaskState
@@ -18,6 +19,7 @@ export const postTaskAsync = createAsyncThunk(
     async (task: Task) =>
     {
         const response = await postTask(task);
+        router.navigate('/')
         return response.data;
     }
 );

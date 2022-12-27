@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { Doctor } from '../../app/models/doctor.model';
+import { router } from '../../routerBrowser';
 import { deleteDoctor, getDoctors, postDoctor, putDoctor } from './doctorService';
 
 export interface DoctorState
@@ -18,6 +19,7 @@ export const postDoctorAsync = createAsyncThunk(
     async (doctor: Doctor) =>
     {
         const response = await postDoctor(doctor);
+        router.navigate('/');
         return response.data;
     }
 );
