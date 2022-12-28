@@ -1,23 +1,23 @@
 import { Button, Calendar, Spin } from 'antd';
-import type { Dayjs } from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import trash from '../../../assets/trash.png';
 import { getAppointmentsAsync } from '../../../features/appointment/appointmentSlice';
 import { selectDayCards, selectStatusDayCards } from '../../../features/dashboard/dashboardSelect';
-import { getDayCardsAsync } from '../../../features/dashboard/dashboardSlice';
+import { getDayCardsAsync, setDaySelected } from '../../../features/dashboard/dashboardSlice';
 import { selectDoctors, selectStatusDoctors } from '../../../features/doctor/doctorSelect';
 import { deleteDoctorAsync, getDoctorsAsync } from '../../../features/doctor/doctorSlice';
 import { selectStatusTasks, selectTasks } from '../../../features/task/taskSelect';
 import { deleteTaskAsync, getTasksAsync } from '../../../features/task/taskSlice';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { DayCard } from '../components/day-card/Day-card';
+import { DayCard, DayCardModel } from '../components/day-card/Day-card';
 import { TaskCard } from '../components/task-card/Task-card';
 import './Dashboard.css';
 
 export function Dashboard()
 {
-    const [ daySelected, setDaySelected ] = useState<string>()
+    const [ dayPicked, setDayPicked ] = useState<string>()
     const doctors = useAppSelector(selectDoctors);
     const tasks = useAppSelector(selectTasks);
     const dayCards = useAppSelector(selectDayCards);
@@ -30,15 +30,16 @@ export function Dashboard()
 
     useEffect(() =>
     {
-        dispatch(getDayCardsAsync(daySelected));
+        dispatch(getDayCardsAsync(dayPicked));
         dispatch(getDoctorsAsync());
         dispatch(getTasksAsync());
         dispatch(getAppointmentsAsync());
-    }, [ daySelected, dispatch ]);
+    }, [ dayPicked, dispatch ]);
 
     const onChange = (value: Dayjs) =>
     {
-        setDaySelected(value.format('YYYY-MM-DD'));
+        setDayPicked(value.format('YYYY-MM-DD'));
+
     };
 
     const deleteDoctor = (id: string) =>
@@ -49,6 +50,13 @@ export function Dashboard()
     const deleteTasks = (id: string) =>
     {
         dispatch(deleteTaskAsync(id));
+    }
+
+    const onClickDayCard = (item: DayCardModel) =>
+    {
+        dispatch(getAppointmentsAsync(item.date))
+        console.log(dayjs(new Date(item.date)))
+        dispatch(setDaySelected(dayjs(new Date(item.date))));
     }
 
     const doctorsList = doctors.map((item, index) =>
@@ -75,13 +83,14 @@ export function Dashboard()
 
     const dayCardsList = dayCards.map((item, index) =>
     {
-        return <DayCard key={index} {...item}></DayCard>
+        return <div key={index} onClick={() => onClickDayCard(item)}>
+            <DayCard {...item} ></DayCard>
+        </div>
     })
 
     return (
         <div className='body'>
             <div className='column-left'>
-
                 <Calendar className='calendar' fullscreen={false} onChange={onChange} />
                 <div className='container-title'>
                     <h1 className='title'>Médicos</h1>

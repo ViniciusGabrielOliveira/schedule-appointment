@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import { CreateDoctor } from './app/containers/create-doctor/Create-doctor';
 import { CreateTask } from './app/containers/create-task/Create-task';
 import { Dashboard } from './app/containers/dashboard/Dashboard';
+import { DetailDay } from './app/containers/detail-day/Detail-day';
 import { Hoot } from './app/containers/hoot/Hoot';
 
 export const router = createBrowserRouter([
@@ -14,9 +15,8 @@ export const router = createBrowserRouter([
               element: <Dashboard />
             },
             {
-              path: "note/:noteId",
-              element: <CreateDoctor />,
-              errorElement: <h2>Não encontrado</h2>,
+              path: "detail-day",
+              element: <DetailDay />
             },
             {
                 path: "/create-doctor",

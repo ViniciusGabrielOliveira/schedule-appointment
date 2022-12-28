@@ -49,6 +49,7 @@
 .hoot-profile
 {
    width: 100%;
+   cursor: pointer;
 }
 
 .hoot-label

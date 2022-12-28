@@ -1,4 +1,5 @@
 import { DateTime } from "luxon";
+import { router } from '../../../../routerBrowser';
 import './Day-card.css';
 
 export interface DayCardModel {
@@ -15,8 +16,12 @@ export function DayCard({date, amountDay, percent}: DayCardModel)
     const week = DateTime.fromISO(date, {locale: 'pt-br'})
         .toFormat('EEE')
 
+    const onClickCard = () => {
+        router.navigate('detail-day')
+    }
+
     return (
-        <div className='card'>
+        <div className='card' onClick={() => onClickCard()}>
             <div className="circle-day">
                 <h1 className='day'>{ day }</h1>
             </div>

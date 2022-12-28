@@ -1,0 +1,68 @@
+
+.detail-day-body
+{
+    display: flex;
+}
+
+.detail-day-container-day
+{
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+    min-height: 50px;
+    background-color: var(--white);
+    border-radius: 1vh;
+    width: 60vw;
+    padding: 5px;
+}
+
+.detail-day-container-hours-list
+{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+}
+
+.detail-day-hour
+{
+    width: 45px;
+    height: 100%;
+    border-right: solid 1px var(--third);
+}
+
+.detail-day-container-appoint
+{
+    width: 80px;
+    background-color: rgba(18, 145, 71, 0.199);
+    border-radius: 1vh;
+    height: 100%;
+    text-align: center;
+    padding: 3px;
+}
+
+@media screen and (max-width: 1200px)  {
+    .detail-day-container-day
+    {
+        width: 50vw;
+    }
+}
+
+@media screen and (max-width: 970px)  {
+    .detail-day-container-day
+    {
+        width: 40vw;
+    }
+}
+
+@media screen and (max-width: 797px)  {
+    .detail-day-body
+    {
+        display: flex;
+        flex-direction: column;
+    }
+    .detail-day-container-day
+    {
+        width: 100%;
+    }
+}

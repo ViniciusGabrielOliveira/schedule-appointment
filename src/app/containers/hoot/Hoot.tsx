@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import dashboardIcon from '../../../assets/dashboard.png';
 import profile from '../../../assets/profile.svg';
 import { selectAmount } from '../../../features/dashboard/dashboardSelect';
@@ -15,7 +15,7 @@ export function Hoot()
     useEffect(() =>
     {
         dispatch(getAmountAsync());
-    }, []);
+    }, [dispatch]);
 
     return (
         <div className="hoot-App">
@@ -35,7 +35,9 @@ export function Hoot()
             <div className='hoot-container-body'>
                 <div className='hoot-menu'>
                     <div className="hoot-circle">
-                        <img src={dashboardIcon} className="hoot-profile" alt="logo" />
+                        <Link to="/">
+                            <img src={dashboardIcon} className="hoot-profile" alt="logo" />
+                        </Link>
                     </div>
                 </div>
                 <Outlet />

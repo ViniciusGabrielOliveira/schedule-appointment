@@ -24,9 +24,9 @@ export const postAppointmentAsync = createAsyncThunk(
 
 export const getAppointmentsAsync = createAsyncThunk(
     'appointments',
-    async () =>
+    async (day?: string) =>
     {
-        const response = await getAppointments();
+        const response = await getAppointments(day);
         return response.data;
     }
 );
