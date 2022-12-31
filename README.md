@@ -2,13 +2,11 @@
 
 <h2>📅 About Project</h2>
 
-All actions in this project are working simulating calls to a REST API using Redux to manage the application state
+All actions in this project are working simulating calls to a REST API using Redux to manage application state
 
-This is a sketch of a webApp simulating a doctor's office displaying the office's weekly schedule with daily billing and percentage of occupancy for appointments. In the calendar you can select the week you want to view.
+This is a sketch of a webApp simulating a doctor's office displaying the office's weekly schedule with daily billing and occupancy percentage for appointments. In the calendar, you can select the week you want to view.
 
-This project is under development and needs to implement the actions of registering a doctor, tasks and appointments.
-
-Although these screens still need to be developed, the functions with store, reducer and actions have already been developed.
+This project is under development...
 
 
 <img align="center" height="40%" src="https://github.com/ViniciusGabrielOliveira/schedule-appointment/blob/master/src/assets/schedule-appointment.png?raw=true">
