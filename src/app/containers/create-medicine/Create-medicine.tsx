@@ -1,15 +1,15 @@
 import { Button, Form, Input } from 'antd';
-import { selectStatusTasks } from '../../../features/task/taskSelect';
-import { postTaskAsync } from '../../../features/task/taskSlice';
+import { selectStatusMedicines } from '../../../features/medicine/medicineSelect';
+import { postMedicineAsync } from '../../../features/medicine/medicineSlice';
 import { router } from '../../../routerBrowser';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { Task } from '../../models/task.model';
-import './Create-task.css';
+import { Medicine } from '../../models/medicine.model';
+import './Create-medicine.css';
 
-export function CreateTask()
+export function CreateMedicine()
 {
     const dispatch = useAppDispatch();
-    const status = useAppSelector(selectStatusTasks);
+    const status = useAppSelector(selectStatusMedicines);
 
     const layout = {
         labelCol: { span: 3 },
@@ -19,21 +19,28 @@ export function CreateTask()
     /* eslint-disable no-template-curly-in-string */
     const validateMessages = {
         required: '${label} é obrigatório!',
+        types: {
+            email: '${label} não é um email válido!',
+            number: '${label} não é um número válido!',
+        },
+        number: {
+            range: '${label} deve estar entre ${min} e ${max}',
+        },
     };
     /* eslint-enable no-template-curly-in-string */
 
-    const onFinish = (values: Task) =>
+    const onFinish = (values: Medicine) =>
     {
-        dispatch(postTaskAsync(values));
+        dispatch(postMedicineAsync(values));
     };
 
     return (
-        <div className='task-body'>
-            <Form className='task-form' {...layout} style={{ width: '100%' }} name="nest-messages" onFinish={onFinish} validateMessages={validateMessages}>
+        <div className='medicine-body'>
+            <Form className='medicine-form' {...layout} style={{ width: '100%' }} name="nest-messages" onFinish={onFinish} validateMessages={validateMessages}>
                 <Form.Item name={[ 'name' ]} label="Nome" rules={[ { required: true } ]}>
                     <Input />
                 </Form.Item>
-                <Form.Item name={[ 'message' ]} label="Descrição" rules={[ { required: true } ]}>
+                <Form.Item name={[ 'manufacturer' ]} label="Fabricante" >
                     <Input />
                 </Form.Item>
                 <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>

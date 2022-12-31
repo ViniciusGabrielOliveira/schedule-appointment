@@ -41,6 +41,14 @@
     padding: 3px;
 }
 
+.detail-day-container-left
+{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 @media screen and (max-width: 1200px)  {
     .detail-day-container-day
     {

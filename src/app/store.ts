@@ -2,6 +2,8 @@ import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
 import appointmentReducer from '../features/appointment/appointmentSlice';
 import dashboardReducer from '../features/dashboard/dashboardSlice';
 import doctorReducer from '../features/doctor/doctorSlice';
+import medicineReducer from '../features/medicine/medicineSlice';
+import patientReducer from '../features/patient/patientSlice';
 import taskReducer from '../features/task/taskSlice';
 
 export const store = configureStore({
@@ -9,7 +11,9 @@ export const store = configureStore({
     dashboard: dashboardReducer,
     doctor: doctorReducer,
     appointment: appointmentReducer,
-    task: taskReducer
+    task: taskReducer,
+    patient: patientReducer,
+    medicine: medicineReducer
   },
 });
 

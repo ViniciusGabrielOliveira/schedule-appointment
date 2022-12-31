@@ -1,10 +1,12 @@
-import { Calendar, Spin } from 'antd';
+import { Button, Calendar, Spin } from 'antd';
 import type { Dayjs } from 'dayjs';
+import dayjs from 'dayjs';
 import { DateTime } from 'luxon';
 import { selectAppointments, selectStatusAppointments } from '../../../features/appointment/appointmentSelect';
 import { getAppointmentsAsync } from '../../../features/appointment/appointmentSlice';
 import { selectDaySelected } from '../../../features/dashboard/dashboardSelect';
 import { setDaySelected } from '../../../features/dashboard/dashboardSlice';
+import { router } from '../../../routerBrowser';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import './Detail-day.css';
 
@@ -13,14 +15,14 @@ export function DetailDay()
     const loadingAppointments = useAppSelector(selectStatusAppointments) === 'loading';
 
     const appointments = useAppSelector(selectAppointments);
-    const daySelected = useAppSelector(selectDaySelected);
+    const daySelected = dayjs(useAppSelector(selectDaySelected));
 
     const dispatch = useAppDispatch();
 
     const onChange = (value: Dayjs) =>
     {
         dispatch(getAppointmentsAsync(value.format('YYYY-MM-DD')));
-        dispatch(setDaySelected(value));
+        dispatch(setDaySelected(value.toISOString()));
     };
 
     const hours = [6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
@@ -45,7 +47,15 @@ export function DetailDay()
     return (
         <Spin spinning={loadingAppointments}>
             <div className='detail-day-body'>
-                <Calendar className='calendar' value={daySelected} fullscreen={false} onChange={onChange} />
+                <div className='detail-day-container-left'>
+                    <Calendar className='calendar' value={daySelected} fullscreen={false} onChange={onChange} />
+                    <Button type="primary" onClick={() => router.navigate('create-appointment')}>
+                        agendar
+                    </Button>
+                    <Button type="default" onClick={() => router.navigate(-1)}>
+                        Voltar
+                    </Button>
+                </div>
 
                 <div className='detail-day-container-hours-list'>
                     {hoursList}

@@ -1,4 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
+import { CreateAppointment } from './app/containers/create-appointment/Create-appointment';
 import { CreateDoctor } from './app/containers/create-doctor/Create-doctor';
 import { CreateTask } from './app/containers/create-task/Create-task';
 import { Dashboard } from './app/containers/dashboard/Dashboard';
@@ -26,6 +27,10 @@ export const router = createBrowserRouter([
                 path: "/create-task",
                 element: <CreateTask />
             },
+            {
+                path: "/create-appointment",
+                element: <CreateAppointment />
+            }
           ]
     },
 

@@ -1,6 +1,7 @@
 import { AppointmentStatus } from './appointment-status.enum';
-import { Doctor, Medicine } from './doctor.model';
-import { Patient } from './people.model';
+import { Doctor } from './doctor.model';
+import { Medicine } from './medicine.model';
+import { Patient } from './patient.model';
 
 export interface Appointment
 {

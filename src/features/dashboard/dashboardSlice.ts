@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import type { Dayjs } from 'dayjs';
 import { DayCardModel } from '../../app/containers/components/day-card/Day-card';
 import { getAmount, getDayCards } from './dashboardService';
 
@@ -9,7 +8,7 @@ export interface DashboardState
     statusAmount: 'idle' | 'loading' | 'failed';
     statusDayCards: 'idle' | 'loading' | 'failed';
     dayCards: Array<DayCardModel>;
-    daySelected: Dayjs | undefined;
+    daySelected: string | undefined;
 }
 
 const initialState: DashboardState = {
@@ -42,7 +41,7 @@ export const dashboardSlice = createSlice({
     name: 'dashboard',
     initialState,
     reducers: {
-        setDaySelected: (state, action: PayloadAction<Dayjs>) => {
+        setDaySelected: (state, action: PayloadAction<string>) => {
             state.daySelected = action.payload
         },
     },

@@ -1,0 +1,14 @@
+.appointment-body
+{
+    padding: 20px;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.mrb
+{
+    margin-right: 10px;
+}

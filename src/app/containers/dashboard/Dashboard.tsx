@@ -1,5 +1,5 @@
 import { Button, Calendar, Spin } from 'antd';
-import dayjs, { Dayjs } from 'dayjs';
+import { Dayjs } from 'dayjs';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import trash from '../../../assets/trash.png';
@@ -55,8 +55,7 @@ export function Dashboard()
     const onClickDayCard = (item: DayCardModel) =>
     {
         dispatch(getAppointmentsAsync(item.date))
-        console.log(dayjs(new Date(item.date)))
-        dispatch(setDaySelected(dayjs(new Date(item.date))));
+        dispatch(setDaySelected(item.date));
     }
 
     const doctorsList = doctors.map((item, index) =>

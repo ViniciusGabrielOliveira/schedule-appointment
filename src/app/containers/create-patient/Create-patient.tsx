@@ -1,15 +1,15 @@
 import { Button, Form, Input } from 'antd';
-import { selectStatusDoctors } from '../../../features/doctor/doctorSelect';
-import { postDoctorAsync } from '../../../features/doctor/doctorSlice';
+import { selectStatusPatients } from '../../../features/patient/patientSelect';
+import { postPatientAsync } from '../../../features/patient/patientSlice';
 import { router } from '../../../routerBrowser';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { Doctor } from '../../models/doctor.model';
-import './Create-doctor.css';
+import { Patient } from '../../models/patient.model';
+import './Create-patient.css';
 
-export function CreateDoctor()
+export function CreatePatient()
 {
     const dispatch = useAppDispatch();
-    const status = useAppSelector(selectStatusDoctors);
+    const status = useAppSelector(selectStatusPatients);
 
     const layout = {
         labelCol: { span: 3 },
@@ -29,14 +29,14 @@ export function CreateDoctor()
     };
     /* eslint-enable no-template-curly-in-string */
 
-    const onFinish = (values: Doctor) =>
+    const onFinish = (values: Patient) =>
     {
-        dispatch(postDoctorAsync(values));
+        dispatch(postPatientAsync(values));
     };
 
     return (
-        <div className='doctor-body'>
-            <Form className='doctor-form' {...layout} style={{ width: '100%' }} name="nest-messages" onFinish={onFinish} validateMessages={validateMessages}>
+        <div className='patient-body'>
+            <Form className='patient-form' {...layout} style={{ width: '100%' }} name="nest-messages" onFinish={onFinish} validateMessages={validateMessages}>
                 <Form.Item name={[ 'name' ]} label="Nome" rules={[ { required: true } ]}>
                     <Input />
                 </Form.Item>
