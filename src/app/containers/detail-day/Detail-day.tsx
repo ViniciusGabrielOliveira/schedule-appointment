@@ -9,6 +9,7 @@ import { selectDaySelected } from '../../../features/dashboard/dashboardSelect';
 import { setDaySelected } from '../../../features/dashboard/dashboardSlice';
 import { router } from '../../../routerBrowser';
 import { useAppDispatch, useAppSelector } from '../../hooks';
+import { AppointmentStatus } from '../../models/appointment-status.enum';
 import './Detail-day.css';
 
 export function DetailDay()
@@ -33,11 +34,21 @@ export function DetailDay()
 
     const hours = [6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
 
+    const colorAppoint = (status: AppointmentStatus) => {
+        return {
+            [AppointmentStatus.finished]: '#dad7cd',
+            [AppointmentStatus.progress]: '#a3b18a',
+            [AppointmentStatus.scheduled]: '#588157',
+            [AppointmentStatus.waiting]: '#ffb703'
+        }[status]
+    }
+
     const appointmentsList = (hour: number) => appointments.map((appoint, index) =>
     {
         return DateTime.fromISO(appoint.date).hour === hour &&
             <div
                 key={index}
+                style={{backgroundColor: colorAppoint(appoint.status) }}
                 className='detail-day-container-appoint'
                 onClick={() => router.navigate(`create-appointment/${appoint.id}`)}>
                 <h6>{appoint.patient.name}</h6>

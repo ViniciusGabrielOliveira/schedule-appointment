@@ -16,6 +16,7 @@ import { router } from '../../../routerBrowser';
 import { range } from '../../../util/range';
 import { validateMessages } from '../../../util/validate-messages';
 import { useAppDispatch, useAppSelector } from '../../hooks';
+import { AppointmentStatus } from '../../models/appointment-status.enum';
 import './Create-appointment.css';
 
 export function CreateAppointment()
@@ -26,6 +27,7 @@ export function CreateAppointment()
     const [arrivalTime, setArrivalTime] = useState<string>();
     const [startTime, setStartTime] = useState<string>();
     const [endTime, setEndTime] = useState<string>();
+    const [appointmentStatus, setAppointmentStatus] = useState<AppointmentStatus>(AppointmentStatus.scheduled);
 
     const [form] = useForm();
 
@@ -58,8 +60,9 @@ export function CreateAppointment()
                 symptoms: appointment?.symptoms,
                 exams: appointment?.exams,
                 medicines: appointment?.medicines?.map(item => item.id),
-                providence: appointment?.providence
+                providence: appointment?.providence,
             });
+            setAppointmentStatus(appointment?.status!)
         }
     }, [ doctors, patients, medicines, dispatch, id, appointment, form ]);
 
@@ -73,14 +76,23 @@ export function CreateAppointment()
             arrivalTime,
             endTime,
             patient: patients.find(item => values.patient === item.id)!,
-            doctor: doctors.find(item => values.doctor === item.id)!
+            doctor: doctors.find(item => values.doctor === item.id)!,
+            status: appointmentStatus
         }
 
         dispatch(id ? putAppointmentAsync({ ...response })
             : postAppointmentAsync({ ...response }));
     };
 
+    const onArrival = () => {
+        setArrivalTime(new Date().toISOString());
+        setAppointmentStatus(AppointmentStatus.waiting)
+    }
 
+    const onFinishAppoint = () => {
+        setEndTime(new Date().toISOString())
+        setAppointmentStatus(AppointmentStatus.finished);
+    }
 
     // eslint-disable-next-line arrow-body-style
     const disabledDate: RangePickerProps[ 'disabledDate' ] = (current) =>
@@ -112,12 +124,18 @@ export function CreateAppointment()
                     form={form}
                     validateMessages={validateMessages}>
                     <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 5 }}>
-                        <Button className='mr' type="primary" onClick={() => setArrivalTime(new Date().toISOString())}>
-                            Paciente Aguardando
-                        </Button>
-                        <Button type="primary" onClick={() => setStartTime(new Date().toISOString())}>
-                            Iniciar Consulta
-                        </Button>
+                        {
+                            appointmentStatus === AppointmentStatus.scheduled
+                            && <Button className='mr' type="primary" onClick={onArrival}>
+                                Paciente Aguardando
+                            </Button>
+                        }
+                        {
+                            appointmentStatus === AppointmentStatus.waiting
+                            && <Button type="primary" onClick={() => setStartTime(new Date().toISOString())}>
+                                Iniciar Consulta
+                            </Button>
+                        }
                     </Form.Item>
 
                     <Form.Item name={[ 'date' ]} label="Data" rules={[ { required: true } ]}>
@@ -171,7 +189,7 @@ export function CreateAppointment()
                     </Form.Item>
 
                     <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 5 }}>
-                        <Button className='mr' type="default" onClick={() => setEndTime(new Date().toISOString)}>
+                        <Button className='mr' type="default" onClick={onFinishAppoint}>
                             Finalizar Consulta
                         </Button>
                         <Button className='mr' type="default" onClick={() => router.navigate(-1)}>
