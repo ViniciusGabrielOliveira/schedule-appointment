@@ -36,9 +36,9 @@ export function DetailDay()
 
     const colorAppoint = (status: AppointmentStatus) => {
         return {
-            [AppointmentStatus.finished]: '#dad7cd',
+            [AppointmentStatus.finished]: '#8f8f8f',
             [AppointmentStatus.progress]: '#a3b18a',
-            [AppointmentStatus.scheduled]: '#588157',
+            [AppointmentStatus.scheduled]: '#457b9d',
             [AppointmentStatus.waiting]: '#ffb703'
         }[status]
     }

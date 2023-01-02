@@ -49,6 +49,7 @@ export function deleteTask(id: string)
 
 export let tasks: Array<Task> = [
     {
+        id: '65481235',
         name: 'Atenção',
         message: 'Lorem ypsum asdfj'
     }

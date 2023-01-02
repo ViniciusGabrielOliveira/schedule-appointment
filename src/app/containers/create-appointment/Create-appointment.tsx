@@ -28,6 +28,7 @@ export function CreateAppointment()
     const [startTime, setStartTime] = useState<string>();
     const [endTime, setEndTime] = useState<string>();
     const [appointmentStatus, setAppointmentStatus] = useState<AppointmentStatus>(AppointmentStatus.scheduled);
+    const [time, setTime] = useState<dayjs.Dayjs>(dayjs().hour(0).minute(0).second(0).millisecond(0));
 
     const [form] = useForm();
 
@@ -38,6 +39,9 @@ export function CreateAppointment()
     const patients = useAppSelector(selectPatients);
     const appointment = useAppSelector(selectAppointment);
     const statusAppointment = useAppSelector(selectStatusAppointment);
+
+
+
 
     const layout = {
         labelCol: { span: 3 },
@@ -94,6 +98,11 @@ export function CreateAppointment()
         setAppointmentStatus(AppointmentStatus.finished);
     }
 
+    const onStart = () => {
+        setStartTime(new Date().toISOString())
+        setAppointmentStatus(AppointmentStatus.progress);
+    }
+
     // eslint-disable-next-line arrow-body-style
     const disabledDate: RangePickerProps[ 'disabledDate' ] = (current) =>
     {
@@ -111,6 +120,16 @@ export function CreateAppointment()
     const optionsPatients = patients.map(item => ({value: item.id, label: item.name}))
 
     const filteredMedicines = medicines.filter((item) => !selectedMedicines.includes(item.name));
+
+    useEffect(() =>
+    {
+        if(appointmentStatus === AppointmentStatus.progress)
+        {
+            setTimeout(() => {
+                setTime(time.add(1, 'second'));
+            }, 1000);
+        }
+    }, [appointmentStatus, time])
 
     return (
         <div className='appointment-body'>
@@ -132,12 +151,12 @@ export function CreateAppointment()
                         }
                         {
                             appointmentStatus === AppointmentStatus.waiting
-                            && <Button type="primary" onClick={() => setStartTime(new Date().toISOString())}>
+                            && <Button type="primary" onClick={onStart}>
                                 Iniciar Consulta
                             </Button>
                         }
                     </Form.Item>
-
+                    {appointmentStatus === AppointmentStatus.progress && <h1 className='time'>{time.format('mm:ss')}</h1>}
                     <Form.Item name={[ 'date' ]} label="Data" rules={[ { required: true } ]}>
                         <DatePicker
                             format="YYYY-MM-DD HH:mm:ss"
@@ -189,15 +208,18 @@ export function CreateAppointment()
                     </Form.Item>
 
                     <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 5 }}>
-                        <Button className='mr' type="default" onClick={onFinishAppoint}>
+                        {appointmentStatus === AppointmentStatus.progress
+                            && <Button className='mr' type="default" onClick={onFinishAppoint}>
                             Finalizar Consulta
-                        </Button>
-                        <Button className='mr' type="default" onClick={() => router.navigate(-1)}>
+                        </Button>}
+                        {appointmentStatus !== AppointmentStatus.progress
+                            && <Button className='mr' type="default" onClick={() => router.navigate(-1)}>
                             Voltar
-                        </Button>
-                        <Button loading={status === 'loading'} type="primary" htmlType="submit">
+                        </Button>}
+                        {appointmentStatus !== AppointmentStatus.progress
+                            && <Button loading={status === 'loading'} type="primary" htmlType="submit">
                             Cadastrar
-                        </Button>
+                        </Button>}
                     </Form.Item>
                 </Form>
             </Spin>

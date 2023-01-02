@@ -1,5 +1,8 @@
 import { useEffect } from 'react';
 import { Link, Outlet } from 'react-router-dom';
+import add_calendar from '../../../assets/add-calendar.png';
+import add_doctor from '../../../assets/add-doctor.png';
+import add_profile from '../../../assets/add-profile.png';
 import dashboardIcon from '../../../assets/dashboard.png';
 import profile from '../../../assets/profile.svg';
 import { selectAmount } from '../../../features/dashboard/dashboardSelect';
@@ -37,6 +40,21 @@ export function Hoot()
                     <div className="hoot-circle">
                         <Link to="/">
                             <img src={dashboardIcon} className="hoot-profile" alt="logo" />
+                        </Link>
+                    </div>
+                    <div className="hoot-circle">
+                        <Link to="/create-appointment">
+                            <img src={add_calendar} className="hoot-profile" alt="logo" />
+                        </Link>
+                    </div>
+                    <div className="hoot-circle">
+                        <Link to="/create-patient">
+                            <img src={add_profile} className="hoot-profile" alt="logo" />
+                        </Link>
+                    </div>
+                    <div className="hoot-circle">
+                        <Link to="/create-doctor">
+                            <img src={add_doctor} className="hoot-profile" alt="logo" />
                         </Link>
                     </div>
                 </div>

@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { CreateAppointment } from './app/containers/create-appointment/Create-appointment';
 import { CreateDoctor } from './app/containers/create-doctor/Create-doctor';
+import { CreatePatient } from './app/containers/create-patient/Create-patient';
 import { CreateTask } from './app/containers/create-task/Create-task';
 import { Dashboard } from './app/containers/dashboard/Dashboard';
 import { DetailDay } from './app/containers/detail-day/Detail-day';
@@ -22,6 +23,10 @@ export const router = createBrowserRouter([
             {
                 path: "/create-doctor",
                 element: <CreateDoctor />
+            },
+            {
+                path: "/create-patient",
+                element: <CreatePatient />
             },
             {
                 path: "/create-task",
