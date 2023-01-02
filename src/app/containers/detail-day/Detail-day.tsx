@@ -30,7 +30,10 @@ export function DetailDay()
     const appointmentsList = (hour: number) => appointments.map((appoint, index) =>
     {
         return DateTime.fromISO(appoint.date).hour === hour &&
-            <div key={index} className='detail-day-container-appoint'>
+            <div
+                key={index}
+                className='detail-day-container-appoint'
+                onClick={() => router.navigate(`create-appointment/${appoint.id}`)}>
                 <h6>{appoint.patient.name}</h6>
                 <h6>{DateTime.fromISO(appoint.date).toLocaleString(DateTime.TIME_SIMPLE) }</h6>
             </div>

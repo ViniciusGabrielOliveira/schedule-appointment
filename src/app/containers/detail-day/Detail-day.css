@@ -39,6 +39,7 @@
     height: 100%;
     text-align: center;
     padding: 3px;
+    cursor: pointer;
 }
 
 .detail-day-container-left

@@ -52,6 +52,13 @@ export let doctors: Array<Doctor> = [
         name: 'João da Silva',
         phone: 12985474488,
         email: 'joaodasilva@gmail.com',
-        specialty: 'orthopedia'
+        specialty: 'ortopedia'
+    },
+    {
+        id: '1236456',
+        name: 'Maria da Silva',
+        phone: 12985474488,
+        email: 'mariadasilva@gmail.com',
+        specialty: 'pediatria'
     }
 ]

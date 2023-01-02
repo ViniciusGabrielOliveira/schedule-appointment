@@ -33,6 +33,17 @@ export function getAppointments(date?: string)
     );
 }
 
+export function getAppointmentById(id: string)
+{
+    const appointment = appointmentsMock.find(item => item.id === id);
+    if(appointment)
+    {
+        return new Promise<{ data: Appointment }>((resolve) =>
+            setTimeout(() => resolve({ data: appointment }), 1000)
+        );
+    }
+}
+
 export function putAppointment(appointment: Appointment)
 {
     appointmentsMock = [
@@ -69,10 +80,10 @@ export let appointmentsMock: Array<Appointment> = [
         date: new Date().toISOString(),
         status: AppointmentStatus.scheduled,
         patient: {
-            id: '1235456',
-            name: 'Joaquim das Neves',
-            phone: 12985444488,
-            email: 'joaquimdasneves@gmail.com'
+            id: '123456789a',
+            name: 'Maria das Graças',
+            phone: 12988874488,
+            email: 'mariadasgracas@gmail.com'
         },
         value: 104.88,
         createAt: new Date().toISOString(),

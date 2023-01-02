@@ -48,9 +48,15 @@ export function deletePatient(id: string)
 
 export let patients: Array<Patient> = [
     {
-        id: '12665456',
+        id: '123456789a',
         name: 'Maria das Graças',
         phone: 12988874488,
         email: 'mariadasgracas@gmail.com'
+    },
+    {
+        id: '123456789b',
+        name: 'João das Merces',
+        phone: 12988994488,
+        email: 'joadodasmerces@gmail.com'
     }
 ]

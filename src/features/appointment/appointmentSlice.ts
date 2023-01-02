@@ -1,16 +1,21 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { Appointment } from '../../app/models/appointment.model';
-import { deleteAppointment, getAppointments, postAppointment, putAppointment } from './appointmentService';
+import { router } from '../../routerBrowser';
+import { deleteAppointment, getAppointmentById, getAppointments, postAppointment, putAppointment } from './appointmentService';
 
 export interface AppointmentState
 {
     appointments: Array<Appointment>;
     statusAppointments: 'idle' | 'loading' | 'failed';
+    appointment: Appointment | undefined;
+    statusAppointment: 'idle' | 'loading' | 'failed';
 }
 
 const initialState: AppointmentState = {
     appointments: [],
-    statusAppointments: 'idle'
+    statusAppointments: 'idle',
+    statusAppointment: 'idle',
+    appointment: undefined
 };
 
 export const postAppointmentAsync = createAsyncThunk(
@@ -18,6 +23,7 @@ export const postAppointmentAsync = createAsyncThunk(
     async (appointment: Appointment) =>
     {
         const response = await postAppointment(appointment);
+        router.navigate(-1);
         return response.data;
     }
 );
@@ -31,11 +37,21 @@ export const getAppointmentsAsync = createAsyncThunk(
     }
 );
 
+export const getAppointmentByIdAsync = createAsyncThunk(
+    'appointment by id',
+    async (id: string) =>
+    {
+        const response = await getAppointmentById(id);
+        return response?.data;
+    }
+);
+
 export const putAppointmentAsync = createAsyncThunk(
     'appointment/put',
     async (appointment: Appointment) =>
     {
         const response = await putAppointment(appointment);
+        router.navigate(-1);
         return response.data;
     }
 );
@@ -108,6 +124,19 @@ export const appointmentSlice = createSlice({
             .addCase(deleteAppointmentAsync.rejected, (state) =>
             {
                 state.statusAppointments = 'failed';
+            })
+            .addCase(getAppointmentByIdAsync.pending, (state) =>
+            {
+                state.statusAppointment = 'loading';
+            })
+            .addCase(getAppointmentByIdAsync.fulfilled, (state, action) =>
+            {
+                state.statusAppointment = 'idle';
+                state.appointment = action.payload;
+            })
+            .addCase(getAppointmentByIdAsync.rejected, (state) =>
+            {
+                state.statusAppointment = 'failed';
             })
     },
 });
