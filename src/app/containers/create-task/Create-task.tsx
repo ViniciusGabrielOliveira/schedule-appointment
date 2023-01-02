@@ -2,6 +2,7 @@ import { Button, Form, Input } from 'antd';
 import { selectStatusTasks } from '../../../features/task/taskSelect';
 import { postTaskAsync } from '../../../features/task/taskSlice';
 import { router } from '../../../routerBrowser';
+import { validateMessages } from '../../../util/validate-messages';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { Task } from '../../models/task.model';
 import './Create-task.css';
@@ -15,12 +16,6 @@ export function CreateTask()
         labelCol: { span: 3 },
         wrapperCol: { span: 8 },
     };
-
-    /* eslint-disable no-template-curly-in-string */
-    const validateMessages = {
-        required: '${label} é obrigatório!',
-    };
-    /* eslint-enable no-template-curly-in-string */
 
     const onFinish = (values: Task) =>
     {

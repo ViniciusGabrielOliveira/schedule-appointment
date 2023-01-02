@@ -2,6 +2,7 @@ import { Button, Form, Input } from 'antd';
 import { selectStatusDoctors } from '../../../features/doctor/doctorSelect';
 import { postDoctorAsync } from '../../../features/doctor/doctorSlice';
 import { router } from '../../../routerBrowser';
+import { validateMessages } from '../../../util/validate-messages';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { Doctor } from '../../models/doctor.model';
 import './Create-doctor.css';
@@ -15,19 +16,6 @@ export function CreateDoctor()
         labelCol: { span: 3 },
         wrapperCol: { span: 8 },
     };
-
-    /* eslint-disable no-template-curly-in-string */
-    const validateMessages = {
-        required: '${label} é obrigatório!',
-        types: {
-            email: '${label} não é um email válido!',
-            number: '${label} não é um número válido!',
-        },
-        number: {
-            range: '${label} deve estar entre ${min} e ${max}',
-        },
-    };
-    /* eslint-enable no-template-curly-in-string */
 
     const onFinish = (values: Doctor) =>
     {

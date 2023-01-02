@@ -1,4 +1,4 @@
-import { Button, Calendar, Spin } from 'antd';
+import { Button, Calendar, Modal, Spin } from 'antd';
 import { Dayjs } from 'dayjs';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -6,8 +6,7 @@ import trash from '../../../assets/trash.png';
 import { getAppointmentsAsync } from '../../../features/appointment/appointmentSlice';
 import { selectDayCards, selectStatusDayCards } from '../../../features/dashboard/dashboardSelect';
 import { getDayCardsAsync, setDaySelected } from '../../../features/dashboard/dashboardSlice';
-import { selectDoctors, selectStatusDoctors } from '../../../features/doctor/doctorSelect';
-import { deleteDoctorAsync, getDoctorsAsync } from '../../../features/doctor/doctorSlice';
+import { getDoctorsAsync } from '../../../features/doctor/doctorSlice';
 import { selectStatusTasks, selectTasks } from '../../../features/task/taskSelect';
 import { deleteTaskAsync, getTasksAsync } from '../../../features/task/taskSlice';
 import { useAppDispatch, useAppSelector } from '../../hooks';
@@ -17,13 +16,16 @@ import './Dashboard.css';
 
 export function Dashboard()
 {
-    const [ dayPicked, setDayPicked ] = useState<string>()
-    const doctors = useAppSelector(selectDoctors);
+    const [ dayPicked, setDayPicked ] = useState<string>();
+    const [ taskDelete, setTaskDelete ] = useState<string>();
     const tasks = useAppSelector(selectTasks);
     const dayCards = useAppSelector(selectDayCards);
     const loadingDayCards = useAppSelector(selectStatusDayCards) === 'loading';
-    const loadingDoctors = useAppSelector(selectStatusDoctors) === 'loading';
     const loadingTasks = useAppSelector(selectStatusTasks) === 'loading';
+
+    const [open, setOpen] = useState(false);
+    const [confirmLoading, setConfirmLoading] = useState(false);
+    const [modalText, setModalText] = useState('Tem certeza que deseja deletar esta task?');
 
 
     const dispatch = useAppDispatch();
@@ -42,32 +44,31 @@ export function Dashboard()
 
     };
 
-    const deleteDoctor = (id: string) =>
-    {
-        dispatch(deleteDoctorAsync(id));
-    }
-
     const deleteTasks = (id: string) =>
     {
-        dispatch(deleteTaskAsync(id));
+        setTaskDelete(id)
+        setOpen(true);
     }
+
+    const handleOkTask = () => {
+        setModalText('...deletando')
+        setConfirmLoading(true);
+        setTimeout(() => {
+            dispatch(deleteTaskAsync(taskDelete!));
+            setOpen(false);
+            setConfirmLoading(false);
+        }, 1000);
+    };
+
+    const handleCancel = () => {
+        setOpen(false);
+    };
 
     const onClickDayCard = (item: DayCardModel) =>
     {
         dispatch(getAppointmentsAsync(item.date))
         dispatch(setDaySelected(item.date));
     }
-
-    const doctorsList = doctors.map((item, index) =>
-    {
-        return <div key={index} className='container-task-card'>
-            <TaskCard {...{
-                name: item.name,
-                message: item.specialty
-            }}></TaskCard>
-            <img width={25} height={30} src={trash} alt="logo" onClick={() => deleteDoctor(item.id)}/>
-        </div>
-    })
 
     const tasksList = tasks.map((item, index) =>
     {
@@ -92,18 +93,6 @@ export function Dashboard()
             <div className='column-left'>
                 <Calendar className='calendar' fullscreen={false} onChange={onChange} />
                 <div className='container-title'>
-                    <h1 className='title'>Médicos</h1>
-                    <Link to="create-doctor">
-                        <Button type="primary" shape="circle">
-                            +
-                        </Button>
-                    </Link>
-                </div>
-                <Spin spinning={loadingDoctors}>
-                    {doctorsList}
-                </Spin>
-
-                <div className='container-title'>
                     <h1 className='title'>Tarefas</h1>
                     <Link to="create-task">
                         <Button type="primary" shape="circle">
@@ -120,7 +109,15 @@ export function Dashboard()
                     {dayCardsList}
                 </Spin>
             </div>
+            <Modal
+                title="Delete"
+                open={open}
+                onOk={handleOkTask}
+                confirmLoading={confirmLoading}
+                onCancel={handleCancel}
+            >
+                <p>{modalText}</p>
+            </Modal>
         </div>
-
     );
 }

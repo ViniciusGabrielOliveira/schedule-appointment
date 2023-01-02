@@ -13,6 +13,8 @@ import { getMedicinesAsync } from '../../../features/medicine/medicineSlice';
 import { selectPatients } from '../../../features/patient/patientSelect';
 import { getPatientsAsync } from '../../../features/patient/patientSlice';
 import { router } from '../../../routerBrowser';
+import { range } from '../../../util/range';
+import { validateMessages } from '../../../util/validate-messages';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import './Create-appointment.css';
 
@@ -39,19 +41,6 @@ export function CreateAppointment()
         labelCol: { span: 3 },
         wrapperCol: { span: 8 },
     };
-
-    /* eslint-disable no-template-curly-in-string */
-    const validateMessages = {
-        required: '${label} é obrigatório!',
-        types: {
-            email: '${label} não é um email válido!',
-            number: '${label} não é um número válido!',
-        },
-        number: {
-            range: '${label} deve estar entre ${min} e ${max}',
-        },
-    };
-    /* eslint-enable no-template-curly-in-string */
 
     useEffect(() =>
     {
@@ -91,15 +80,7 @@ export function CreateAppointment()
             : postAppointmentAsync({ ...response }));
     };
 
-    const range = (start: number, end: number) =>
-    {
-        const result = [];
-        for (let i = start; i < end; i++)
-        {
-            result.push(i);
-        }
-        return result;
-    };
+
 
     // eslint-disable-next-line arrow-body-style
     const disabledDate: RangePickerProps[ 'disabledDate' ] = (current) =>

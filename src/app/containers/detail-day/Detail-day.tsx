@@ -2,6 +2,7 @@ import { Button, Calendar, Spin } from 'antd';
 import type { Dayjs } from 'dayjs';
 import dayjs from 'dayjs';
 import { DateTime } from 'luxon';
+import { useEffect } from 'react';
 import { selectAppointments, selectStatusAppointments } from '../../../features/appointment/appointmentSelect';
 import { getAppointmentsAsync } from '../../../features/appointment/appointmentSlice';
 import { selectDaySelected } from '../../../features/dashboard/dashboardSelect';
@@ -15,13 +16,18 @@ export function DetailDay()
     const loadingAppointments = useAppSelector(selectStatusAppointments) === 'loading';
 
     const appointments = useAppSelector(selectAppointments);
-    const daySelected = dayjs(useAppSelector(selectDaySelected));
+    const daySelected = useAppSelector(selectDaySelected);
 
     const dispatch = useAppDispatch();
 
+    useEffect(() =>
+    {
+        dispatch(getAppointmentsAsync(daySelected));
+
+    }, [ dispatch, daySelected ]);
+
     const onChange = (value: Dayjs) =>
     {
-        dispatch(getAppointmentsAsync(value.format('YYYY-MM-DD')));
         dispatch(setDaySelected(value.toISOString()));
     };
 
@@ -51,7 +57,7 @@ export function DetailDay()
         <Spin spinning={loadingAppointments}>
             <div className='detail-day-body'>
                 <div className='detail-day-container-left'>
-                    <Calendar className='calendar' value={daySelected} fullscreen={false} onChange={onChange} />
+                    <Calendar className='calendar' value={dayjs(daySelected)} fullscreen={false} onChange={onChange} />
                     <Button type="primary" onClick={() => router.navigate('create-appointment')}>
                         agendar
                     </Button>

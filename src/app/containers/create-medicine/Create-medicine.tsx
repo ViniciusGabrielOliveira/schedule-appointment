@@ -2,6 +2,7 @@ import { Button, Form, Input } from 'antd';
 import { selectStatusMedicines } from '../../../features/medicine/medicineSelect';
 import { postMedicineAsync } from '../../../features/medicine/medicineSlice';
 import { router } from '../../../routerBrowser';
+import { validateMessages } from '../../../util/validate-messages';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { Medicine } from '../../models/medicine.model';
 import './Create-medicine.css';
@@ -15,19 +16,6 @@ export function CreateMedicine()
         labelCol: { span: 3 },
         wrapperCol: { span: 8 },
     };
-
-    /* eslint-disable no-template-curly-in-string */
-    const validateMessages = {
-        required: '${label} é obrigatório!',
-        types: {
-            email: '${label} não é um email válido!',
-            number: '${label} não é um número válido!',
-        },
-        number: {
-            range: '${label} deve estar entre ${min} e ${max}',
-        },
-    };
-    /* eslint-enable no-template-curly-in-string */
 
     const onFinish = (values: Medicine) =>
     {
