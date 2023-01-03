@@ -39,27 +39,27 @@ export function Hoot()
             <div className='hoot-container-body'>
                 <div className='hoot-menu'>
                     <div className="hoot-circle">
-                        <Link to="/">
+                        <Link to="">
                             <img src={dashboardIcon} className="hoot-profile" alt="logo" />
                         </Link>
                     </div>
                     <div className="hoot-circle">
-                        <Link to="/create-appointment">
+                        <Link to="create-appointment">
                             <img src={add_calendar} className="hoot-profile" alt="logo" />
                         </Link>
                     </div>
                     <div className="hoot-circle">
-                        <Link to="/create-patient">
+                        <Link to="create-patient">
                             <img src={add_profile} className="hoot-profile" alt="logo" />
                         </Link>
                     </div>
                     <div className="hoot-circle">
-                        <Link to="/create-doctor">
+                        <Link to="create-doctor">
                             <img src={add_doctor} className="hoot-profile" alt="logo" />
                         </Link>
                     </div>
                     <div className="hoot-circle">
-                        <Link to="/create-medicine">
+                        <Link to="create-medicine">
                             <img src={add_medicine} className="hoot-profile" alt="logo" />
                         </Link>
                     </div>

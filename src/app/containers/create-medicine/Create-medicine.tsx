@@ -25,6 +25,9 @@ export function CreateMedicine()
     return (
         <div className='medicine-body'>
             <Form className='medicine-form' {...layout} style={{ width: '100%' }} name="nest-messages" onFinish={onFinish} validateMessages={validateMessages}>
+                <Form.Item>
+                    <h1 className='title'>Adicionar Medicamento</h1>
+                </Form.Item>
                 <Form.Item name={[ 'name' ]} label="Nome" rules={[ { required: true } ]}>
                     <Input />
                 </Form.Item>

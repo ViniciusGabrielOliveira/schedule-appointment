@@ -142,6 +142,9 @@ export function CreateAppointment()
                     onFinish={onFinish}
                     form={form}
                     validateMessages={validateMessages}>
+                    <Form.Item>
+                        <h1 className='title'>Agendar Consulta</h1>
+                    </Form.Item>
                     <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 5 }}>
                         {
                             appointmentStatus === AppointmentStatus.scheduled

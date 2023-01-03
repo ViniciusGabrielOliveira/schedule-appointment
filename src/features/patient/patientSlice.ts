@@ -19,7 +19,7 @@ export const postPatientAsync = createAsyncThunk(
     async (patient: Patient) =>
     {
         const response = await postPatient(patient);
-        router.navigate('/');
+        router.navigate('schedule-appointment');
         return response.data;
     }
 );

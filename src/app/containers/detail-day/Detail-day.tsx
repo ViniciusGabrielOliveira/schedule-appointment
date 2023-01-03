@@ -50,7 +50,7 @@ export function DetailDay()
                 key={index}
                 style={{backgroundColor: colorAppoint(appoint.status) }}
                 className='detail-day-container-appoint'
-                onClick={() => router.navigate(`edit-appointment/${appoint.id}`)}>
+                onClick={() => router.navigate(`schedule-appointment/edit-appointment/${appoint.id}`)}>
                 <h6>{appoint.patient?.name}</h6>
                 <h6>{DateTime.fromISO(appoint.date).toLocaleString(DateTime.TIME_SIMPLE) }</h6>
             </div>
@@ -69,7 +69,7 @@ export function DetailDay()
             <div className='detail-day-body'>
                 <div className='detail-day-container-left'>
                     <Calendar className='calendar' value={dayjs(daySelected)} fullscreen={false} onChange={onChange} />
-                    <Button type="primary" onClick={() => router.navigate('create-appointment')}>
+                    <Button type="primary" onClick={() => router.navigate('schedule-appointment/create-appointment')}>
                         agendar
                     </Button>
                     <Button type="default" onClick={() => router.navigate(-1)}>

@@ -46,6 +46,9 @@ export function CreateTask()
     return (
         <div className='task-body'>
             <Form form={form} className='task-form' {...layout} style={{ width: '100%' }} name="nest-messages" onFinish={onFinish} validateMessages={validateMessages}>
+                <Form.Item>
+                    <h1 className='title'>Adicionar Tarefa</h1>
+                </Form.Item>
                 <Form.Item name={[ 'name' ]} label="Nome" rules={[ { required: true } ]}>
                     <Input />
                 </Form.Item>

@@ -17,7 +17,7 @@ export function DayCard({date, amountDay, percent}: DayCardModel)
         .toFormat('EEE')
 
     const onClickCard = () => {
-        router.navigate('detail-day')
+        router.navigate('schedule-appointment/detail-day')
     }
 
     return (

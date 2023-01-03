@@ -10,7 +10,7 @@ import { Hoot } from './app/containers/hoot/Hoot';
 
 export const router = createBrowserRouter([
     {
-        path: "/",
+        path: "schedule-appointment",
         element: <Hoot />,
         children: [
             {
@@ -22,31 +22,31 @@ export const router = createBrowserRouter([
               element: <DetailDay />
             },
             {
-                path: "/create-doctor",
+                path: "create-doctor",
                 element: <CreateDoctor />
             },
             {
-                path: "/create-patient",
+                path: "create-patient",
                 element: <CreatePatient />
             },
             {
-                path: "/create-task",
+                path: "create-task",
                 element: <CreateTask />
             },
             {
-                path: "/edit-task/:id",
+                path: "edit-task/:id",
                 element: <CreateTask />
             },
             {
-                path: "/create-appointment",
+                path: "create-appointment",
                 element: <CreateAppointment />
             },
             {
-                path: "/edit-appointment/:id",
+                path: "edit-appointment/:id",
                 element: <CreateAppointment />
             },
             {
-                path: "/create-medicine",
+                path: "create-medicine",
                 element: <CreateMedicine />
             }
           ]

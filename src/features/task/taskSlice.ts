@@ -22,7 +22,7 @@ export const postTaskAsync = createAsyncThunk(
     async (task: Task) =>
     {
         const response = await postTask(task);
-        router.navigate('/')
+        router.navigate('schedule-appointment')
         return response.data;
     }
 );
@@ -50,7 +50,7 @@ export const putTaskAsync = createAsyncThunk(
     async (task: Task) =>
     {
         const response = await putTask(task);
-        router.navigate('/')
+        router.navigate('schedule-appointment')
         return response.data;
     }
 );
