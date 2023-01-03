@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/schedule-appointment/static/css/main.1cd0150a.css",
-    "main.js": "/schedule-appointment/static/js/main.4e2b6d93.js",
+    "main.css": "/schedule-appointment/static/css/main.65e3c194.css",
+    "main.js": "/schedule-appointment/static/js/main.95411624.js",
     "static/js/787.2c2e5c57.chunk.js": "/schedule-appointment/static/js/787.2c2e5c57.chunk.js",
     "index.html": "/schedule-appointment/index.html",
     "static/media/profile.svg": "/schedule-appointment/static/media/profile.d7c0a5d1da34f2a8a880924cfeb4765d.svg",
-    "main.1cd0150a.css.map": "/schedule-appointment/static/css/main.1cd0150a.css.map",
-    "main.4e2b6d93.js.map": "/schedule-appointment/static/js/main.4e2b6d93.js.map",
+    "main.65e3c194.css.map": "/schedule-appointment/static/css/main.65e3c194.css.map",
+    "main.95411624.js.map": "/schedule-appointment/static/js/main.95411624.js.map",
     "787.2c2e5c57.chunk.js.map": "/schedule-appointment/static/js/787.2c2e5c57.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.1cd0150a.css",
-    "static/js/main.4e2b6d93.js"
+    "static/css/main.65e3c194.css",
+    "static/js/main.95411624.js"
   ]
 }
