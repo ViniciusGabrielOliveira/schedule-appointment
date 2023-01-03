@@ -38,11 +38,12 @@
     margin-top: 30px;
 }
 
-.title
+.dash-title
 {
     width: 80%;
     font-weight: 700;
     font-size: calc(9px + 1.5vmin);
+    margin-left: 5px;
 }
 
 .value
