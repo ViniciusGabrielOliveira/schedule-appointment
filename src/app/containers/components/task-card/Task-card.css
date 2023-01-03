@@ -42,3 +42,8 @@
     text-align: center;
     align-self: center;
 }
+
+.message
+{
+    padding-top: 7px;
+}

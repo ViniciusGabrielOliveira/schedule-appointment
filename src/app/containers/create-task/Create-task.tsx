@@ -57,7 +57,7 @@ export function CreateTask()
                 </Form.Item>
                 <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
                     <Spin spinning={statusTask === 'loading'}>
-                        <Button type="default" onClick={() => router.navigate(-1)}>
+                        <Button className='mr' type="default" onClick={() => router.navigate(-1)}>
                             Voltar
                         </Button>
                         <Button loading={status === 'loading'} type="primary" htmlType="submit">
