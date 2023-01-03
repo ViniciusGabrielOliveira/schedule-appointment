@@ -10,7 +10,7 @@ export interface TaskCardModel {
 export function TaskCard({id, name, message}: TaskCardModel)
 {
     return (
-        <div className='card-task' onClick={() => router.navigate(`/edit-task/${id}`)}>
+        <div className='card-task' onClick={() => router.navigate(`schedule-appointment/edit-task/${id}`)}>
             <h1 className='name'>{ name }</h1>
             <p className='message'>{ message }</p>
         </div>

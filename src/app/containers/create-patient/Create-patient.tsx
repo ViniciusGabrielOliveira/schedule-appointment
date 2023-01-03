@@ -25,6 +25,9 @@ export function CreatePatient()
     return (
         <div className='patient-body'>
             <Form className='patient-form' {...layout} style={{ width: '100%' }} name="nest-messages" onFinish={onFinish} validateMessages={validateMessages}>
+                <Form.Item>
+                    <h1 className='title'>Adicionar Paciente</h1>
+                </Form.Item>
                 <Form.Item name={[ 'name' ]} label="Nome" rules={[ { required: true } ]}>
                     <Input />
                 </Form.Item>
@@ -36,9 +39,6 @@ export function CreatePatient()
                     <Input />
                 </Form.Item>
                 <Form.Item name={[ 'email' ]} label="Email" rules={[ { type: 'email' } ]}>
-                    <Input />
-                </Form.Item>
-                <Form.Item name={[ 'specialty' ]} label="Especialidadde" rules={[ { required: true } ]}>
                     <Input />
                 </Form.Item>
                 <Form.Item name={[ 'address' ]} label="Endereço" >

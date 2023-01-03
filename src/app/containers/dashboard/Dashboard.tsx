@@ -96,7 +96,7 @@ export function Dashboard()
                 <Calendar className='calendar' fullscreen={false} onChange={onChange} />
                 <div className='container-title'>
                     <h1 className='title'>Tarefas</h1>
-                    <Link to="create-task">
+                    <Link to="schedule-appointment/create-task">
                         <Button type="primary" shape="circle">
                             +
                         </Button>
