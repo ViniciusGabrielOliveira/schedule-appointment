@@ -1,17 +1,20 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { Task } from '../../app/models/task.model';
 import { router } from '../../routerBrowser';
-import { deleteTask, getTasks, postTask, putTask } from './taskService';
+import { deleteTask, getTaskById, getTasks, postTask, putTask } from './taskService';
 
 export interface TaskState
 {
     tasks: Array<Task>;
     statusTasks: 'idle' | 'loading' | 'failed';
+    statusTask: 'idle' | 'loading' | 'failed';
+    task?: Task;
 }
 
 const initialState: TaskState = {
     tasks: [],
-    statusTasks: 'idle'
+    statusTasks: 'idle',
+    statusTask: 'idle'
 };
 
 export const postTaskAsync = createAsyncThunk(
@@ -33,11 +36,21 @@ export const getTasksAsync = createAsyncThunk(
     }
 );
 
+export const getTaskByIdAsync = createAsyncThunk(
+    'task by id',
+    async (id: string) =>
+    {
+        const response = await getTaskById(id);
+        return response?.data;
+    }
+);
+
 export const putTaskAsync = createAsyncThunk(
     'tasks/put',
     async (task: Task) =>
     {
         const response = await putTask(task);
+        router.navigate('/')
         return response.data;
     }
 );
@@ -110,6 +123,19 @@ export const taskSlice = createSlice({
             .addCase(deleteTaskAsync.rejected, (state) =>
             {
                 state.statusTasks = 'failed';
+            })
+            .addCase(getTaskByIdAsync.pending, (state) =>
+            {
+                state.statusTask = 'loading';
+            })
+            .addCase(getTaskByIdAsync.fulfilled, (state, action) =>
+            {
+                state.statusTask = 'idle';
+                state.task = action.payload;
+            })
+            .addCase(getTaskByIdAsync.rejected, (state) =>
+            {
+                state.statusTask = 'failed';
             })
     },
 });

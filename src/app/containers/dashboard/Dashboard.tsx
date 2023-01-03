@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import trash from '../../../assets/trash.png';
 import { getAppointmentsAsync } from '../../../features/appointment/appointmentSlice';
 import { selectDayCards, selectStatusDayCards } from '../../../features/dashboard/dashboardSelect';
-import { getDayCardsAsync, setDaySelected } from '../../../features/dashboard/dashboardSlice';
+import { getAmountAsync, getDayCardsAsync, setDaySelected } from '../../../features/dashboard/dashboardSlice';
 import { getDoctorsAsync } from '../../../features/doctor/doctorSlice';
 import { selectStatusTasks, selectTasks } from '../../../features/task/taskSelect';
 import { deleteTaskAsync, getTasksAsync } from '../../../features/task/taskSlice';
@@ -36,6 +36,7 @@ export function Dashboard()
         dispatch(getDoctorsAsync());
         dispatch(getTasksAsync());
         dispatch(getAppointmentsAsync());
+        dispatch(getAmountAsync());
     }, [ dayPicked, dispatch ]);
 
     const onChange = (value: Dayjs) =>
@@ -74,6 +75,7 @@ export function Dashboard()
     {
         return <div key={index} className='container-task-card'>
             <TaskCard {...{
+                id: item.id!,
                 name: item.name,
                 message: item.message
             }}></TaskCard>

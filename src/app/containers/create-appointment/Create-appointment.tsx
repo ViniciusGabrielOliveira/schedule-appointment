@@ -28,7 +28,7 @@ export function CreateAppointment()
     const [startTime, setStartTime] = useState<string>();
     const [endTime, setEndTime] = useState<string>();
     const [appointmentStatus, setAppointmentStatus] = useState<AppointmentStatus>(AppointmentStatus.scheduled);
-    const [time, setTime] = useState<dayjs.Dayjs>(dayjs().hour(0).minute(0).second(0).millisecond(0));
+    const [time, setTime] = useState<dayjs.Dayjs>(dayjs().minute(0).second(0).millisecond(0));
 
     const [form] = useForm();
 
@@ -171,7 +171,16 @@ export function CreateAppointment()
                     </Form.Item>
 
                     <Form.Item name={[ 'patient' ]} label="Paciente" rules={[ { required: true } ]}>
-                        <Select options={optionsPatients}></Select>
+                        <Select
+                            options={optionsPatients}
+                            showSearch
+                            placeholder="Procure pelo paciente"
+                            optionFilterProp="children"
+                            filterOption={(input, option) => (option?.label.toLowerCase() ?? '').includes(input.toLowerCase())}
+                            filterSort={(optionA, optionB) =>
+                                (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
+                            }>
+                        </Select>
                     </Form.Item>
 
                     <Form.Item name={[ 'value' ]} label="Valor R$" rules={[ { required: true } ]}>
@@ -192,14 +201,19 @@ export function CreateAppointment()
                     <Form.Item name={[ 'medicines' ]} label="Medicamentos" >
                         <Select
                             mode="multiple"
-                            placeholder="Inserted are removed"
+                            placeholder="Procure o remédio"
                             value={selectedMedicines}
                             onChange={setSelectedMedicines}
                             style={{ width: '100%' }}
                             options={filteredMedicines.map((item) => ({
-                                value: item.name,
+                                value: item.id,
                                 label: item.name,
                             }))}
+                            showSearch
+                            filterOption={(input, option) => (option?.label.toLowerCase() ?? '').includes(input.toLowerCase())}
+                            filterSort={(optionA, optionB) =>
+                                (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
+                            }
                         />
                     </Form.Item>
 

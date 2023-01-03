@@ -49,8 +49,7 @@ export function putAppointment(appointment: Appointment)
     appointmentsMock = [
         ...appointmentsMock.filter(app => app.id !== appointment.id),
         {
-            ...appointment,
-            id: Math.floor(Math.random() * (9999999999999 - 1 + 1) + 1).toString()
+            ...appointment
         }
     ];
 

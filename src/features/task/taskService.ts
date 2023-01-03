@@ -23,13 +23,23 @@ export function getTasks()
     );
 }
 
+export function getTaskById(id: string)
+{
+    const task = tasks.find(item => item.id === id);
+    if(task)
+    {
+        return new Promise<{ data: Task }>((resolve) =>
+            setTimeout(() => resolve({ data: task }), 1000)
+        );
+    }
+}
+
 export function putTask(task: Task)
 {
     tasks = [
         ...tasks.filter(tas => tas.id !== task.id),
         {
-            ...task,
-            id: Math.floor(Math.random() * (9999999999999 - 1 + 1) + 1).toString()
+            ...task
         }
     ];
 

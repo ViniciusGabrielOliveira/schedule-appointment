@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import add_calendar from '../../../assets/add-calendar.png';
 import add_doctor from '../../../assets/add-doctor.png';
+import add_medicine from '../../../assets/add-medicine.png';
 import add_profile from '../../../assets/add-profile.png';
 import dashboardIcon from '../../../assets/dashboard.png';
 import profile from '../../../assets/profile.svg';
@@ -55,6 +56,11 @@ export function Hoot()
                     <div className="hoot-circle">
                         <Link to="/create-doctor">
                             <img src={add_doctor} className="hoot-profile" alt="logo" />
+                        </Link>
+                    </div>
+                    <div className="hoot-circle">
+                        <Link to="/create-medicine">
+                            <img src={add_medicine} className="hoot-profile" alt="logo" />
                         </Link>
                     </div>
                 </div>

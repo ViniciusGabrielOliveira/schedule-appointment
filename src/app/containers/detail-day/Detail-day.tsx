@@ -50,8 +50,8 @@ export function DetailDay()
                 key={index}
                 style={{backgroundColor: colorAppoint(appoint.status) }}
                 className='detail-day-container-appoint'
-                onClick={() => router.navigate(`create-appointment/${appoint.id}`)}>
-                <h6>{appoint.patient.name}</h6>
+                onClick={() => router.navigate(`edit-appointment/${appoint.id}`)}>
+                <h6>{appoint.patient?.name}</h6>
                 <h6>{DateTime.fromISO(appoint.date).toLocaleString(DateTime.TIME_SIMPLE) }</h6>
             </div>
     })
